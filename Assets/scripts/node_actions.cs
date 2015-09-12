@@ -5,18 +5,10 @@ using System.Collections;
 
 public class node_actions : MonoBehaviour
 {
-
-	public event Action Clicked;
 	private Vector3 screenPoint;
 	private Vector3 offset;
 	private float lockedYPosition;
 	public static Vector3 scanPos;
-
-	void OnDestroy()
-	{
-		//Clear out the event to prevent issues
-		Clicked = null;
-	}
 
 	void OnMouseDown() {
 		//Causes centering. Delete, maybe?

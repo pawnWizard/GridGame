@@ -17,8 +17,6 @@ namespace GridGame
 			Vector3 position = new Vector3(xpos, ypos);
 			this.nodeObject = MonoBehaviour.Instantiate(prefab, position, Quaternion.identity) as GameObject;
 			this.nodeObject.transform.SetParent(parent);
-
-			nodeObject.SendMessage("BeginConnectScript", this);
 		}
 
 		public static void SetPrefab(GameObject renderer)
@@ -33,15 +31,6 @@ namespace GridGame
 			prefab = renderer;
 		}
 
-		public void ConnectScript(node_actions actions)
-		{
-			actions.Clicked += OnClick;
-		}
-
-		private void OnClick()
-		{
-
-		}
 	}
 }
 
