@@ -9,14 +9,13 @@ namespace GridGame
 		
 		private GameObject nodeObject;
 
-		public Node(Vector3 position)
+		public Node(int xindex, int yindex)
 		{
-			this.nodeObject = MonoBehaviour.Instantiate(prefab, position, Quaternion.identity) as GameObject;
-		}
+			float xpos = xindex * GridData.NodeSpacing + GridData.XStart;
+			float ypos = yindex * GridData.NodeSpacing + GridData.YStart;
 
-		public Node(float x, float y)
-			: this(new Vector3(x,y))
-		{
+			Vector3 position = new Vector3(xpos, ypos);
+			this.nodeObject = MonoBehaviour.Instantiate(prefab, position, Quaternion.identity) as GameObject;
 		}
 
 		public static void SetPrefab(GameObject renderer)

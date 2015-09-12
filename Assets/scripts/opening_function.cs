@@ -19,12 +19,14 @@ public class opening_function : MonoBehaviour {
 		new GridGame.GameLine(posC, posE);
 		new GridGame.GameLine(posD, posF);
 
-		new GridGame.Node(posA);
+		/*new GridGame.Node(posA);
 		new GridGame.Node(posB);
 		new GridGame.Node(posC);
 		new GridGame.Node(posD);
 		new GridGame.Node(posE);
-		new GridGame.Node(posF);
+		new GridGame.Node(posF);*/
+		GridGame.GridData grid = new GridGame.GridData(5);
+		grid.Instantiate();
 	}
 
 }
