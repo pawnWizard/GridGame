@@ -12,12 +12,6 @@ public class node_actions : MonoBehaviour
 	private float lockedYPosition;
 	public static Vector3 scanPos;
 
-	void BeginConnectScript(object sender)
-	{
-		Node node = sender as Node;
-		node.ConnectScript(this);
-	}
-
 	void OnDestroy()
 	{
 		//Clear out the event to prevent issues
