@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../SpaceChess/Assets/Scripts/functions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\PrefabCache.cs">
     <Files>
-      <File FileName="Assets/opening_function.cs" Line="8" Column="15" />
-      <File FileName="../SpaceChess/Assets/Scripts/functions.cs" Line="23" Column="4" />
+      <File FileName="Assets\scripts\opening_function.cs" Line="12" Column="17" />
+      <File FileName="Assets\scripts\PrefabCache.cs" Line="9" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

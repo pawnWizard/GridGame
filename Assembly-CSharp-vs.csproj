@@ -46,7 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\opening_function.cs" />
+     <Compile Include="Assets\scripts\GameLine.cs" />
+     <Compile Include="Assets\scripts\Node.cs" />
+     <Compile Include="Assets\scripts\PrefabCache.cs" />
+     <Compile Include="Assets\scripts\opening_function.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
