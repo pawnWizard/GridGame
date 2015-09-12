@@ -9,13 +9,14 @@ namespace GridGame
 		
 		private GameObject nodeObject;
 
-		public Node(int xindex, int yindex)
+		public Node(int xindex, int yindex, Transform parent)
 		{
 			float xpos = xindex * GridData.NodeSpacing + GridData.XStart;
 			float ypos = yindex * GridData.NodeSpacing + GridData.YStart;
 
 			Vector3 position = new Vector3(xpos, ypos);
 			this.nodeObject = MonoBehaviour.Instantiate(prefab, position, Quaternion.identity) as GameObject;
+			this.nodeObject.transform.SetParent(parent);
 
 			nodeObject.SendMessage("BeginConnectScript", this);
 		}
