@@ -14,20 +14,12 @@ public class opening_function : MonoBehaviour {
 		Vector3 posE = new Vector3(2,1);
 		Vector3 posF = new Vector3(3,1);
 
-		new GameLine(posA, GameLine.LineDirection.Right);
-		new GameLine(posA, GameLine.LineDirection.Down);
-		new GameLine(posC, GameLine.LineDirection.Right);
-		new GameLine(posC, GameLine.LineDirection.Down);
-		new GameLine(posD, GameLine.LineDirection.Down);
+		GridData.Current.AddLine(2, 3, GameLine.LineDirection.Right);
+		GridData.Current.AddLine(2, 3, GameLine.LineDirection.Down);
+		GridData.Current.AddLine(2, 2, GameLine.LineDirection.Right);
+		GridData.Current.AddLine(2, 2, GameLine.LineDirection.Down);
+		GridData.Current.AddLine(3, 2, GameLine.LineDirection.Down);
 
-		/*new GridGame.Node(posA);
-		new GridGame.Node(posB);
-		new GridGame.Node(posC);
-		new GridGame.Node(posD);
-		new GridGame.Node(posE);
-		new GridGame.Node(posF);*/
-		GridGame.GridData grid = new GridGame.GridData(5);
-		grid.Instantiate();
 	}
 
 }

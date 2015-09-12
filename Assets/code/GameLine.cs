@@ -22,13 +22,14 @@ namespace GridGame
 
 		private GameObject lineObject;
 
-		public GameLine(Vector3 start, LineDirection direction)
+		public GameLine(int xindex, int yindex, LineDirection direction, Transform parent)
 		{
-			Vector3 actualStart = start;// + new Vector3(GridData.NodeSpacing / 2.0f, 0);
+			Vector3 actualStart = GridData.IndexToVector(xindex, yindex);// + new Vector3(GridData.NodeSpacing / 2.0f, 0);
 			int deg = dirToDegrees[direction];
 			Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, deg));
 
 			this.lineObject = MonoBehaviour.Instantiate(prefab, actualStart, rotation) as GameObject;
+			this.lineObject.transform.SetParent(parent);
 		}
 
 		public static void SetPrefab(GameObject renderer)
