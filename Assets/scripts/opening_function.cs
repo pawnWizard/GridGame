@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using GridGame;
 
 public class opening_function : MonoBehaviour {
 
@@ -13,11 +14,11 @@ public class opening_function : MonoBehaviour {
 		Vector3 posE = new Vector3(2,1);
 		Vector3 posF = new Vector3(3,1);
 
-		new GridGame.GameLine(posA, posB);
-		new GridGame.GameLine(posA, posC);
-		new GridGame.GameLine(posC, posD);
-		new GridGame.GameLine(posC, posE);
-		new GridGame.GameLine(posD, posF);
+		new GameLine(posA, GameLine.LineDirection.Right);
+		new GameLine(posA, GameLine.LineDirection.Down);
+		new GameLine(posC, GameLine.LineDirection.Right);
+		new GameLine(posC, GameLine.LineDirection.Down);
+		new GameLine(posD, GameLine.LineDirection.Down);
 
 		/*new GridGame.Node(posA);
 		new GridGame.Node(posB);

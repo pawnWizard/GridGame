@@ -1,29 +1,37 @@
 using UnityEngine;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace GridGame
 {
 	public class GameLine
 	{
-		private static LineRenderer prefab;
+		public enum LineDirection { Left, Right, Up, Down };
 
-		private LineRenderer lineRenderer;
+		private static GameObject prefab;
 
-		public GameLine(Vector3 start, Vector3 end)
+		private static Dictionary<LineDirection, int> dirToDegrees = 
+			new Dictionary<LineDirection, int>
 		{
-			this.lineRenderer = MonoBehaviour.Instantiate(prefab);
-			lineRenderer.SetVertexCount(2);
-			lineRenderer.SetPosition(0, start);
-			lineRenderer.SetPosition(1, end);
-			lineRenderer.SetWidth(0.1f, 0.1f);
+			{ LineDirection.Left, 180 },
+			{ LineDirection.Right, 0 },
+			{ LineDirection.Up, 90 },
+			{ LineDirection.Down, 270 },
+		};
+
+		private GameObject lineObject;
+
+		public GameLine(Vector3 start, LineDirection direction)
+		{
+			Vector3 actualStart = start;// + new Vector3(GridData.NodeSpacing / 2.0f, 0);
+			int deg = dirToDegrees[direction];
+			Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, deg));
+
+			this.lineObject = MonoBehaviour.Instantiate(prefab, actualStart, rotation) as GameObject;
 		}
 
-		public GameLine(int x1, int y1, int x2, int y2) 
-			: this(new Vector3(x1, y1), new Vector3(x2, y2))
-		{
-		}
-
-		public static void SetPrefab(LineRenderer renderer)
+		public static void SetPrefab(GameObject renderer)
 		{
 			if (renderer == null)
 				throw new ArgumentNullException();

@@ -7,7 +7,7 @@ using System.Collections;
 /// </summary>
 public class PrefabCache : MonoBehaviour
 {
-	public LineRenderer lineObject;
+	public GameObject lineObject;
 	public GameObject nodeObject;
 
 	void Awake()

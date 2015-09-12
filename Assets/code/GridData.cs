@@ -26,6 +26,11 @@ namespace GridGame
 			InitNodeArray();
 		}
 
+		public void AddLine(int x1, int y1, int x2, int y2)
+		{
+			throw new NotImplementedException();
+		}
+
 		private void InitNodeArray()
 		{
 			for (int i=0; i < Size; i++)
