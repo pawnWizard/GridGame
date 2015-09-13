@@ -16,6 +16,8 @@ namespace GridGame
 		private GameObject gameObject;
 		private Node[,] nodeArray;
 
+		private LineArray horLines, vertLines;
+
 		public GridData(int size, GameObject gameObject)
 		{
 			if (Current == null)
@@ -26,6 +28,9 @@ namespace GridGame
 			this.Size = size;
 			nodeArray = new Node[Size,Size];
 			this.gameObject = gameObject;
+
+			horLines = new LineArray(size, size-1);
+			vertLines = new LineArray(size-1, size);
 		}
 
 		public int Size { get; private set; }
@@ -37,8 +42,21 @@ namespace GridGame
 
 		public void AddLine(int xindex, int yindex, GameLine.LineDirection direction)
 		{
-			//TODO: store these in an array
-			new GameLine(xindex, yindex, direction, gameObject.transform);
+			GameLine line = new GameLine(xindex, yindex, direction, gameObject.transform);
+
+			if (direction == GameLine.LineDirection.Down)
+				vertLines.SetLine(xindex, yindex, line);
+			else if (direction == GameLine.LineDirection.Up)
+				vertLines.SetLine(xindex, yindex - 1, line);
+			else if (direction == GameLine.LineDirection.Left)
+				vertLines.SetLine(xindex - 1, yindex, line);
+			else
+				vertLines.SetLine(xindex, yindex, line);
+		}
+
+		public void RotateLine(int xindex, int yindex, GameLine.LineDirection dirFrom, GameLine.LineDirection dirTo)
+		{
+			LineArray.RotateLine(horLines, vertLines, xindex, yindex, dirFrom, dirTo);
 		}
 
 		public void InitNodeArray()

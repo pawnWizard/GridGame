@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\code\GameLine.cs" />
      <Compile Include="Assets\code\GridData.cs" />
+     <Compile Include="Assets\code\LineArray.cs" />
      <Compile Include="Assets\code\Node.cs" />
      <Compile Include="Assets\code\conditions.cs" />
      <Compile Include="Assets\scripts\PrefabCache.cs" />
