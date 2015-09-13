@@ -45,6 +45,10 @@ public class line_actions : MonoBehaviour {
 	}
 	
 	void OnMouseDrag () {
+
+		// Only rotate the line if it doesn't cause a break
+	
+
 		Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mouse.z = 0;
 		transform.rotation = Quaternion.FromToRotation(moving_edge - station_edge, mouse - station_edge) * stabilize;
@@ -52,5 +56,61 @@ public class line_actions : MonoBehaviour {
 	}
 
 	void OnMouseUp() {
+		Cursor.visible = true;
+		//x = 0;
+
+		//snapping
+		float angle_original;
+		float angle_original_exact;
+		float angle_current;
+		float angle_current_exact;
+
+		Vector3 mouse = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		mouse.z = 0;
+
+		// previous angle
+		Vector3 moving_edge_relative = moving_edge - station_edge;
+
+		if (moving_edge_relative.x > 0) {
+			angle_original = 180 / Mathf.PI * Mathf.Atan (moving_edge_relative.y / moving_edge_relative.x);
+		} else {
+			angle_original = 180 / Mathf.PI * Mathf.Atan (moving_edge_relative.y / moving_edge_relative.x) + 180;
+		}
+		Debug.Log ("angle_original " + angle_original);
+
+		angle_original_exact = 90 * Mathf.Round (angle_original / 90);
+
+
+		// current angle
+		Vector3 mouse_relative = mouse - station_edge;
+		Debug.Log ("mouse_relative.x " + mouse_relative.x);
+		Debug.Log ("mouse_relative.y " + mouse_relative.y);
+
+		if (mouse_relative.x > 0) {
+			angle_current = 180 / Mathf.PI * Mathf.Atan (mouse_relative.y / mouse_relative.x);
+		} else {
+			angle_current = 180 / Mathf.PI * Mathf.Atan (mouse_relative.y / mouse_relative.x) + 180;
+		}
+		Debug.Log ("angle_current " + angle_current);
+
+		Debug.Log ("angle_current % 90 " + angle_current % 90);
+
+		// Final snap!
+		bool moved = false;
+		if (Mathf.Min (angle_current % 90, 90 - (angle_current % 90)) < 40) {
+			angle_current_exact = 90 * Mathf.Round (angle_current / 90);
+			transform.rotation = Quaternion.Euler (0, 0, angle_current_exact);
+			moved = true;
+		} else {
+			transform.rotation = Quaternion.Euler (0, 0, angle_original_exact);
+		}
+//		if (moved) {
+//			int xindex, yindex;
+//			VectorToIndex (station_edge, xindex, yindex);
+//
+//			//	GridData.Current.RotateLine(xindex,yindex,GridGame.GameLine.LineDirection); 
+//		}
 	}
+
+
 }
