@@ -13,6 +13,7 @@ public class opening_function : MonoBehaviour {
 		//Vector3 posD = new Vector3(3,2);
 		//Vector3 posE = new Vector3(2,1);
 		//Vector3 posF = new Vector3(3,1);
+		Camera.main.ScreenToWorldPoint (new Vector3 (3, 3, 0));
 
 		GridData.Current.AddLine(3, 3, GameLine.LineDirection.Left);
 		GridData.Current.AddLine(2, 3, GameLine.LineDirection.Down);
