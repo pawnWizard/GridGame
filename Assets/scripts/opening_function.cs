@@ -14,9 +14,9 @@ public class opening_function : MonoBehaviour {
 		//Vector3 posE = new Vector3(2,1);
 		//Vector3 posF = new Vector3(3,1);
 
-		GridData.Current.AddLine(2, 3, GameLine.LineDirection.Right);
+		GridData.Current.AddLine(3, 3, GameLine.LineDirection.Left);
 		GridData.Current.AddLine(2, 3, GameLine.LineDirection.Down);
-		GridData.Current.AddLine(2, 2, GameLine.LineDirection.Right);
+		GridData.Current.AddLine(3, 2, GameLine.LineDirection.Left);
 		GridData.Current.AddLine(2, 2, GameLine.LineDirection.Down);
 		GridData.Current.AddLine(3, 2, GameLine.LineDirection.Down);
 
