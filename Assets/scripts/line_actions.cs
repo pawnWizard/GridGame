@@ -22,20 +22,20 @@ public class line_actions : MonoBehaviour {
 
 		//Vertical lines
 		if (((this.transform.position.x - 0.08) <= cx) && ((this.transform.position.x + 0.08) >= cx)) {
-			print ("Vertical");
 			if (cy > (this.transform.position.y - (GridData.NodeSpacing / 2))) {
 				transform.Rotate (new Vector3 (0, 0, 180));
 				transform.Translate (-Vector3.right);
-				print("Altered");
+				GridData.Current.FlipLine (this.transform.position.x, this.transform.position.y,
+				                           this.transform.rotation.eulerAngles.z); 
 			}
 		}
 		//Horizontal lines
 		else {
-			print ("Horizontal");
 			if (cx > (this.transform.position.x - (GridData.NodeSpacing / 2))) {
-				print ("Altered");
 				transform.Rotate (new Vector3 (0, 0, 180));
 				transform.Translate (-Vector3.right);
+				GridData.Current.FlipLine (this.transform.position.x, this.transform.position.y,
+				                           this.transform.rotation.eulerAngles.z); 
 			}
 		}
 		stabilize = this.transform.rotation;
