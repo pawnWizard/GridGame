@@ -40,6 +40,12 @@ namespace GridGame
 			return new Vector3(xindex*NodeSpacing + XStart, yindex*NodeSpacing + YStart);
 		}
 
+		public static void VectorToIndex(Vector3 vector, out int xindex, out int yindex)
+		{
+			xindex = Convert.ToInt32((vector.x - XStart) / NodeSpacing);
+			yindex = Convert.ToInt32((vector.y - YStart) / NodeSpacing);
+		}
+
 		public void AddLine(int xindex, int yindex, GameLine.LineDirection direction)
 		{
 			GameLine line = new GameLine(xindex, yindex, direction, gameObject.transform);
@@ -80,6 +86,23 @@ namespace GridGame
 				line = vertLines.RemoveLine(nodeX, nodeY - 1);
 				horLines.SetLine(nodeX, nodeY, line);
 				break;
+			default:
+				throw new InvalidOperationException();
+			}
+		}
+
+		public bool DoesLineExist(int xindex, int yindex, GameLine.LineDirection dir)
+		{
+			switch (dir)
+			{
+			case GameLine.LineDirection.Down:
+				return vertLines.ExistsLine(xindex, yindex);
+			case GameLine.LineDirection.Up:
+				return vertLines.ExistsLine(xindex, yindex - 1);
+			case GameLine.LineDirection.Right:
+				return horLines.ExistsLine(xindex, yindex);
+			case GameLine.LineDirection.Left:
+				return horLines.ExistsLine(xindex - 1, yindex);
 			default:
 				throw new InvalidOperationException();
 			}
