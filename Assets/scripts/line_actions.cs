@@ -19,33 +19,14 @@ public class line_actions : MonoBehaviour {
 
 		float cx = Camera.main.ScreenToWorldPoint (Input.mousePosition).x,
 		cy = Camera.main.ScreenToWorldPoint (Input.mousePosition).y;
-		GameLine.LineDirection dir;
 
 		float line_angle = this.transform.eulerAngles.z;
-		switch((int)line_angle) {
-		case 0:
-			dir = GameLine.LineDirection.Right;
-			break;
-		case 90:
-			dir = GameLine.LineDirection.Up;
-			break;
-		case 180:
-			dir = GameLine.LineDirection.Left;
-			break;
-		case 270:
-			dir = GameLine.LineDirection.Down;
-			break;
-		default:
-			throw new InvalidOperationException();
-		}
 
 		//Vertical lines
 		if (((this.transform.position.x - 0.08) <= cx) && ((this.transform.position.x + 0.08) >= cx)) {
 			if (cy > (this.transform.position.y - (GridData.NodeSpacing / 2))) {
 				transform.Rotate (new Vector3 (0, 0, 180));
 				transform.Translate (-Vector3.right);
-
-				GridData.Current.FlipLine ((int)this.transform.position.x, (int)this.transform.position.y, dir); 
 			}
 		}
 		//Horizontal lines
@@ -53,8 +34,6 @@ public class line_actions : MonoBehaviour {
 			if (cx > (this.transform.position.x - (GridData.NodeSpacing / 2))) {
 				transform.Rotate (new Vector3 (0, 0, 180));
 				transform.Translate (-Vector3.right);
-
-				GridData.Current.FlipLine ((int)this.transform.position.x, (int)this.transform.position.y, dir); 
 			}
 		}
 		stabilize = this.transform.rotation;
@@ -95,24 +74,18 @@ public class line_actions : MonoBehaviour {
 		} else {
 			angle_original = 180 / Mathf.PI * Mathf.Atan (moving_edge_relative.y / moving_edge_relative.x) + 180;
 		}
-		Debug.Log ("angle_original " + angle_original);
 
 		angle_original_exact = 90 * Mathf.Round (angle_original / 90);
 
 
 		// current angle
 		Vector3 mouse_relative = mouse - station_edge;
-		Debug.Log ("mouse_relative.x " + mouse_relative.x);
-		Debug.Log ("mouse_relative.y " + mouse_relative.y);
 
 		if (mouse_relative.x > 0) {
 			angle_current = 180 / Mathf.PI * Mathf.Atan (mouse_relative.y / mouse_relative.x);
 		} else {
 			angle_current = 180 / Mathf.PI * Mathf.Atan (mouse_relative.y / mouse_relative.x) + 180;
 		}
-		Debug.Log ("angle_current " + angle_current);
-
-		Debug.Log ("angle_current % 90 " + angle_current % 90);
 
 		// Final snap!
 		bool moved = false;

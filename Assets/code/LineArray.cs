@@ -21,8 +21,10 @@ namespace GridGame
 
 		public void SetLine(int xindex, int yindex, GameLine line)
 		{
+			Debug.Log("Array: Trying to set " + xindex + "," + yindex);
 			if (lines[xindex,yindex] != null)
 				throw new InvalidOperationException("Cannot add a line: A line already exists in that location.");
+			Debug.Log("Array: Successfully set.");
 			lines[xindex,yindex] = line;
 		}
 
@@ -43,7 +45,7 @@ namespace GridGame
 				return;
 
 			GameLine line;
-			if (dirFrom == GameLine.LineDirection.Down)
+			if (dirFrom == GameLine.LineDirection.Up)
 				line = vertical.RemoveLine(nodeX, nodeY);
 			else if (dirFrom == GameLine.LineDirection.Left)
 				line = horiz.RemoveLine(nodeX - 1, nodeY);
@@ -52,7 +54,7 @@ namespace GridGame
 			else
 				line = vertical.RemoveLine(nodeX, nodeY - 1);
 
-			if (dirTo == GameLine.LineDirection.Down)
+			if (dirTo == GameLine.LineDirection.Up)
 				vertical.SetLine(nodeX, nodeY, line);
 			else if (dirTo == GameLine.LineDirection.Up)
 				vertical.SetLine(nodeX, nodeY - 1, line);

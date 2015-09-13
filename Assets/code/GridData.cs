@@ -50,9 +50,11 @@ namespace GridGame
 		{
 			GameLine line = new GameLine(xindex, yindex, direction, gameObject.transform);
 
-			if (direction == GameLine.LineDirection.Down)
+			Debug.Log("Adding line: " + xindex + "," + yindex + " " + direction.ToString());
+
+			if (direction == GameLine.LineDirection.Up)
 				vertLines.SetLine(xindex, yindex, line);
-			else if (direction == GameLine.LineDirection.Up)
+			else if (direction == GameLine.LineDirection.Down)
 				vertLines.SetLine(xindex, yindex - 1, line);
 			else if (direction == GameLine.LineDirection.Left)
 				horLines.SetLine(xindex - 1, yindex, line);
@@ -65,39 +67,13 @@ namespace GridGame
 			LineArray.RotateLine(horLines, vertLines, xindex, yindex, dirFrom, dirTo);
 		}
 
-		public void FlipLine(int nodeX, int nodeY, GameLine.LineDirection dirStart)
-		{
-			GameLine line;
-			switch (dirStart)
-			{
-			case GameLine.LineDirection.Down:
-				line = vertLines.RemoveLine(nodeX, nodeY);
-				vertLines.SetLine(nodeX, nodeY - 1, line);
-				break;
-			case GameLine.LineDirection.Up:
-				line = vertLines.RemoveLine(nodeX, nodeY - 1);
-				vertLines.SetLine(nodeX, nodeY, line);
-				break;
-			case GameLine.LineDirection.Right:
-				line = horLines.RemoveLine(nodeX, nodeY);
-				horLines.SetLine(nodeX, nodeY - 1, line);
-				break;
-			case GameLine.LineDirection.Left:
-				line = vertLines.RemoveLine(nodeX, nodeY - 1);
-				horLines.SetLine(nodeX, nodeY, line);
-				break;
-			default:
-				throw new InvalidOperationException();
-			}
-		}
-
 		public bool DoesLineExist(int xindex, int yindex, GameLine.LineDirection dir)
 		{
 			switch (dir)
 			{
-			case GameLine.LineDirection.Down:
-				return vertLines.ExistsLine(xindex, yindex);
 			case GameLine.LineDirection.Up:
+				return vertLines.ExistsLine(xindex, yindex);
+			case GameLine.LineDirection.Down:
 				return vertLines.ExistsLine(xindex, yindex - 1);
 			case GameLine.LineDirection.Right:
 				return horLines.ExistsLine(xindex, yindex);
